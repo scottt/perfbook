@@ -1,5 +1,5 @@
 *.aux
-# *.bbl -- but need to figure out what to do with my latex .bib files...
+*.bbl
 *.blg
 *.dvi
 *.log
@@ -23,6 +23,7 @@ qqz_html.tex
 perfbook.out
 perfbook-1c.tex
 perfbook-1c.out
+perfbook-hb.out
 
 RCS
 
