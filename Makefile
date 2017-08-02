@@ -211,29 +211,33 @@ perfbook.aux: $(LATEXSOURCES) $(EPSSOURCES)
 	sh utilities/runfirstlatex.sh perfbook
 
 perfbook-1c.pdf: perfbook-1c.bbl $(LATEXSOURCES) $(EPSSOURCES) extraction embedfonts
-	sed -e 's/,twocolumn//' -e '/^\\frontmatter/a \\\\pagestyle{plain}' -e 's/setboolean{twocolumn}{true}/setboolean{twocolumn}{false}/' < perfbook.tex > perfbook-1c.tex
 	sh utilities/runlatex.sh perfbook-1c
 
 perfbook-1c.bbl: $(BIBSOURCES) perfbook-1c.aux
 	bibtex perfbook-1c
 
-perfbook-1c.aux: $(LATEXSOURCES) $(EPSSOURCES) extraction embedfonts
+perfbook-1c.aux: perfbook-1c.tex $(LATEXSOURCES) $(EPSSOURCES) extraction embedfonts
 	sh utilities/runfirstlatex.sh perfbook-1c
 
 perfbook-hb.pdf: perfbook-hb.bbl $(LATEXSOURCES) $(EPSSOURCES) extraction embedfonts
-	sed -e 's/,twocolumn/&,letterpaperhb/' -e 's/setboolean{hardcover}{false}/setboolean{hardcover}{true}/' < perfbook.tex > perfbook-hb.tex
 	sh utilities/runlatex.sh perfbook-hb
 
 perfbook-hb.bbl: $(BIBSOURCES) perfbook-hb.aux
 	bibtex perfbook-hb
 
-perfbook-hb.aux: $(LATEXSOURCES) $(EPSSOURCES) extraction embedfonts
+perfbook-hb.aux: perfbook-hb.tex $(LATEXSOURCES) $(EPSSOURCES) extraction embedfonts
 	sh utilities/runfirstlatex.sh perfbook-hb
 
 perfbook_flat.tex: $(LATEXSOURCES) $(EPSSOURCES) embedfonts
 	echo > qqz.tex
 	texexpand perfbook.tex > perfbook_flat.tex
 	sh utilities/extractqqz.sh < perfbook_flat.tex > qqz.tex
+
+perfbook-1c.tex: perfbook.tex
+	sed -e 's/,twocolumn//' -e '/^\\frontmatter/a \\\\pagestyle{plain}' -e 's/setboolean{twocolumn}{true}/setboolean{twocolumn}{false}/' < perfbook.tex > perfbook-1c.tex
+
+perfbook-hb.tex: perfbook.tex
+	sed -e 's/,twocolumn/&,letterpaperhb/' -e 's/setboolean{hardcover}{false}/setboolean{hardcover}{true}/' < perfbook.tex > perfbook-hb.tex
 
 qqz_html.tex: perfbook_flat.tex
 	sh utilities/prep4html.sh < qqz.tex > qqz_html.tex

@@ -21,7 +21,14 @@
 \lstset{basicstyle=\ttfamily}
 % \usepackage[strings]{underscore}
 % \usepackage{underscore}
+\usepackage{pifont} % special character for qqz reference point
 \usepackage[bookmarks=true,bookmarksnumbered=true,pdfborder={0 0 0}]{hyperref}
+\usepackage{footnotebackref} % to enable cross-ref of footnote
+\usepackage[all]{hypcap} % for going to the top of figure and table
+\usepackage{epigraph}
+\setlength{\epigraphwidth}{2.6in}
+\usepackage[xspace]{ellipsis}
+\usepackage{braket} % for \ket{} macro in QC section
 
 % custom packages
 
@@ -36,6 +43,7 @@
 }
 %%HTMLNOSKIP
 \newcommand{\co}[1]{\lstinline[breaklines=yes,breakatwhitespace=yes]{#1}}
+\newcommand{\Epigraph}[2]{\epigraphhead[65]{\rmfamily\epigraph{#1}{#2}}}
 
 \title{Is Parallel Programming Hard, And, If So, What Can You Do About It?}
 \author{
