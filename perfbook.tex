@@ -29,6 +29,7 @@
 \setlength{\epigraphwidth}{2.6in}
 \usepackage[xspace]{ellipsis}
 \usepackage{braket} % for \ket{} macro in QC section
+\usepackage{datetime}
 
 % custom packages
 
@@ -54,7 +55,8 @@
 	IBM Beaverton \\
 	\href{mailto:paulmck@linux.vnet.ibm.com}{paulmck@linux.vnet.ibm.com} \\
 } % end author
-% \date{\ }
+\newdate{date}{02}{06}{2014}
+\date{\displaydate{date}}
 
 \setcounter{topnumber}{3}
 \renewcommand\topfraction{.75}
